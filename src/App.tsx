@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchImages } from "./api";
 
-const Header = () => {
+const Header = (): JSX.Element => {
 	return (
 		<header className="hero is-dark is-bold">
 			<div className="hero-body">
@@ -13,7 +13,11 @@ const Header = () => {
 	);
 };
 
-const Image = (props: { src: string | undefined }) => {
+interface ImageProps {
+	src: string | undefined;
+}
+
+const Image = (props: ImageProps): JSX.Element => {
 	return (
 		<div className="card">
 			<div className="card-image">
@@ -25,11 +29,15 @@ const Image = (props: { src: string | undefined }) => {
 	);
 };
 
-const Loading = () => {
+const Loading = (): JSX.Element => {
 	return <p>Loading...</p>;
 };
 
-const Gallery = (props: { urls: any }) => {
+interface GalleryProps {
+	urls: string[] | null;
+}
+
+const Gallery = (props: GalleryProps): JSX.Element => {
 	const { urls } = props;
 	if (urls == null) {
 		return <Loading />;
@@ -47,8 +55,8 @@ const Gallery = (props: { urls: any }) => {
 	);
 };
 
-const Main = () => {
-	const [urls, setUrls] = useState(null);
+const Main = (): JSX.Element => {
+	const [urls, setUrls] = useState<string[] | null>(null);
 
 	useEffect(() => {
 		fetchImages("shiba").then((urls) => {
@@ -67,7 +75,7 @@ const Main = () => {
 	);
 };
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
 	return (
 		<footer className="footer">
 			<div className="content has-text-centered">
@@ -80,7 +88,7 @@ const Footer = () => {
 	);
 };
 
-const App = () => {
+const App = (): JSX.Element => {
 	return (
 		<div>
 			<Header />
