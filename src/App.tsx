@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { fetchImages } from "./api";
+import "tailwindcss/tailwind.css";
 
 const Header = (): JSX.Element => {
 	return (
-		<header className="hero is-dark is-bold">
-			<div className="hero-body">
-				<div className="container">
-					<h1 className="title">Cute Dog Images</h1>
+		<header className="bg-slate-950">
+			<div>
+				<div>
+					<h1 className="text-3xl text-slate-100">Cute Dog Images</h1>
 				</div>
 			</div>
 		</header>
@@ -19,13 +20,9 @@ interface ImageProps {
 
 const Image = (props: ImageProps): JSX.Element => {
 	return (
-		<div className="card">
-			<div className="card-image">
-				<figure className="image">
-					<img src={props.src} alt="cute dog!" />
-				</figure>
-			</div>
-		</div>
+		<figure>
+			<img src={props.src} alt="" />
+		</figure>
 	);
 };
 
@@ -43,10 +40,10 @@ const Gallery = (props: GalleryProps): JSX.Element => {
 		return <Loading />;
 	}
 	return (
-		<div className="columns is-vcentered is-multiline">
+		<div className="grid grid-cols-3 gap-4">
 			{urls.map((url) => {
 				return (
-					<div key={url} className="column is-3">
+					<div key={url}>
 						<Image src={url} />
 					</div>
 				);
@@ -66,8 +63,8 @@ const Main = (): JSX.Element => {
 
 	return (
 		<main>
-			<section className="section">
-				<div className="container">
+			<section>
+				<div className="w-10/12 mx-auto">
 					<Gallery urls={urls} />
 				</div>
 			</section>
@@ -77,11 +74,13 @@ const Main = (): JSX.Element => {
 
 const Footer = (): JSX.Element => {
 	return (
-		<footer className="footer">
-			<div className="content has-text-centered">
-				<p>Dog images are retrieved from Dog API</p>
+		<footer className="bg-slate-950">
+			<div>
+				<p className="text-slate-100">Dog images are retrieved from Dog API</p>
 				<p>
-					<a href="https://dog.ceo/dog-api/about">Donate to Dog API</a>
+					<a className="text-cyan-500" href="https://dog.ceo/dog-api/about">
+						Donate to Dog API
+					</a>
 				</p>
 			</div>
 		</footer>
@@ -90,11 +89,11 @@ const Footer = (): JSX.Element => {
 
 const App = (): JSX.Element => {
 	return (
-		<div>
+		<>
 			<Header />
 			<Main />
 			<Footer />
-		</div>
+		</>
 	);
 };
 
