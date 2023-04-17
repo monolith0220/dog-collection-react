@@ -1,4 +1,4 @@
-export const Header = (): JSX.Element => {
+export const Header: React.FC = () => {
 	return (
 		<header className="bg-slate-950 py-5">
 			<div>

@@ -3,7 +3,7 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Main } from "./components/Main";
 
-const App = (): JSX.Element => {
+const App: React.FC = () => {
 	return (
 		<>
 			<Header />

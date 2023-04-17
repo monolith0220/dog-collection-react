@@ -1,28 +1,27 @@
 import { useEffect, useState } from "react";
 import { fetchImages } from "./api";
 
-interface ImageProps {
+type ImageProps = {
 	src: string;
-}
+};
 
-const Image = (props: ImageProps): JSX.Element => {
+const Image: React.FC<ImageProps> = ({ src }) => {
 	return (
 		<figure>
-			<img src={props.src} alt="" />
+			<img src={src} alt="" />
 		</figure>
 	);
 };
 
-const Loading = (): JSX.Element => {
+const Loading: React.FC = () => {
 	return <p>Loading...</p>;
 };
 
-interface GalleryProps {
+type GalleryProps = {
 	urls: string[] | null;
-}
+};
 
-const Gallery = (props: GalleryProps): JSX.Element => {
-	const { urls } = props;
+const Gallery: React.FC<GalleryProps> = ({ urls }) => {
 	if (urls == null) {
 		return <Loading />;
 	}
@@ -39,7 +38,7 @@ const Gallery = (props: GalleryProps): JSX.Element => {
 	);
 };
 
-export const Main = (): JSX.Element => {
+export const Main: React.FC = () => {
 	const [urls, setUrls] = useState<string[] | null>(null);
 
 	useEffect(() => {

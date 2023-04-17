@@ -1,4 +1,4 @@
-export const Footer = (): JSX.Element => {
+export const Footer: React.FC = () => {
 	return (
 		<footer className="bg-slate-950 py-3">
 			<div>
