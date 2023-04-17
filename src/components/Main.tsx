@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { fetchImages } from "./api";
 
 type ImageProps = {
 	src: string;
@@ -42,6 +41,12 @@ export const Main: React.FC = () => {
 	const [urls, setUrls] = useState<string[] | null>(null);
 
 	useEffect(() => {
+		const fetchImages = async (breed: string): Promise<string[]> => {
+			const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random/12`);
+			const data = await response.json();
+			return data.message;
+		};
+
 		fetchImages("shiba").then((urls) => {
 			setUrls(urls);
 		});
